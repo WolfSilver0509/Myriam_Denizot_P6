@@ -33,7 +33,6 @@ exports.createSauce = (req, res, next) => {
 };
 
 exports.modifySauce = (req, res, next) => {
-  console.log("mon img de merde " + req.file)
   if (req.file) {
       console.log('if')
       Sauce.findOne({ _id: req.params.id })
