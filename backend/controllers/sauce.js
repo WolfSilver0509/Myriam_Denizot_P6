@@ -27,14 +27,14 @@ exports.createSauce = (req, res, next) => {
   sauce.save()
       .then(() => res.status(201).json({ message: 'Sauce enregistrée !'}))
       .catch(error => {
-          console.log(json({ error }));
+          
           res.status(400).json({ error });
       });
 };
 
 exports.modifySauce = (req, res, next) => {
   if (req.file) {
-      console.log('if')
+      
       Sauce.findOne({ _id: req.params.id })
           .then(sauce => {
               const filename = sauce.imageUrl.split('/images/')[1];
@@ -50,7 +50,7 @@ exports.modifySauce = (req, res, next) => {
           })
           .catch(error => res.status(500).json({ error }));
   } else {
-    console.log('else')
+    
       const sauceObject = { ...req.body };
       Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Sauce modifiée!' }))
