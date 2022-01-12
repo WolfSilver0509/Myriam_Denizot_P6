@@ -27,11 +27,13 @@ exports.signup = (req, res, next) => {
             if (!valid) {
               return res.status(401).json({ error: 'Mot de passe incorrect !' });
             }
+            const SECRET_KEY = process.env.SECRET_KEY;
+            console.log(SECRET_KEY);
             res.status(200).json({
               userId: user._id,
               token: jwt.sign(
                 { userId: user._id },
-                'RANDOM_TOKEN_SECRET',
+                SECRET_KEY,
                 { expiresIn: '24h' }
               )
             });

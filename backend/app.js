@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const sauceRoutes = require('./routes/sauce')
 const userRoutes = require('./routes/user');
 const path = require('path');
-const fs = require('fs');
+
 
 mongoose.connect(process.env.DB,
   {
