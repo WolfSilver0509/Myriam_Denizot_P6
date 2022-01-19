@@ -11,7 +11,8 @@ exports.signup = (req, res, next) => {
       });
       user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({message : 'Impossible de créer un nouvel utilisateur' }));
+        
     })
    
 };
@@ -20,12 +21,12 @@ exports.signup = (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then(user => {
         if (!user) {
-          return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+          return res.status(401).json({ message: 'Utilisateur non trouvé !' });
         }
         bcrypt.compare(req.body.password, user.password)
           .then(valid => {
             if (!valid) {
-              return res.status(401).json({ error: 'Mot de passe incorrect !' });
+              return res.status(401).json({ message: 'Mot de passe incorrect !' });
             }
             const SECRET_KEY = process.env.SECRET_KEY;
             console.log(SECRET_KEY);
