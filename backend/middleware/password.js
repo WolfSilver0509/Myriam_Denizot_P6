@@ -1,5 +1,5 @@
 
-const schemaPassword = require('../models/Password');
+const schemaPassword = require('../models/password');
 
 const status = require('http-status');
 
